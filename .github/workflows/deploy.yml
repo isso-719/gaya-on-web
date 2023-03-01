@@ -24,5 +24,9 @@ jobs:
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./build
+          cname: gaya-on.com # Optional
+          commit_message: Deployed react app to GitHub Pages # Optional
