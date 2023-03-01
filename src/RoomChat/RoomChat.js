@@ -6,10 +6,8 @@ import {
   Button, CloseButton,
   Code,
   Flex,
-  Heading,
   Input,
   Text,
-  theme,
   useColorModeValue,
 } from '@chakra-ui/react';
 import data from '@emoji-mart/data'

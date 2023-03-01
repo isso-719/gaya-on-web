@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Box,
-  Button, Editable, EditableInput, EditablePreview,
+  Button,
   Flex,
   FormControl,
   FormLabel,

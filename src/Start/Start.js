@@ -10,10 +10,8 @@ import {
   Heading,
   Input,
   Text,
-  useDisclosure,
 } from '@chakra-ui/react';
 import * as PropTypes from 'prop-types';
-import { string } from 'i/lib/util';
 
 function Form(props) {
   return null;
