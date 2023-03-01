@@ -1,42 +1,38 @@
 import React from 'react';
 import {
   ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
   theme,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import './Const'
+import { Header } from './Header/Header';
+import { SplashScreen } from './AppControl/SplashScreen';
+import { AppWindow } from './AppControl/AppWindow';
 
 function App() {
+  const [isLoaded, setIsLoaded] = React.useState(false);
+
+  // 画面が表示されたら、1秒後に isLoaded を true にする
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 1000);
+  }, []);
+
+  // isLoaded が true になったら、AppWindow を表示する
+  if (isLoaded) {
+    return (
+      <ChakraProvider theme={theme}>
+        <Header />
+        <AppWindow />
+      </ChakraProvider>
+    );
+  }
+
+  // isLoaded が false の場合は、SplashScreen を表示する
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
+      <SplashScreen />
     </ChakraProvider>
   );
 }
-
 export default App;

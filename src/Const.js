@@ -1,0 +1,1 @@
+global.ServerUrl = 'https://gaya-on.com';
