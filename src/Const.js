@@ -1,1 +1,1 @@
-global.ServerUrl = 'https://gaya-on.com';
+global.ServerUrl = 'https://api.gaya-on.com';
