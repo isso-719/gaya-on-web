@@ -46,33 +46,40 @@ export const Start = props => {
         });
       }
     }).catch((e) => {
-      console.log(e.message);
       setError(e.message);
     });
   }
 
-  // TODO: Fetch による POST リクエストに書き換え
   function createRoom() {
     global.ServerUrl = document.getElementById('room-create-address-input').value;
 
-    try {
-      let xhr = new XMLHttpRequest();
-      xhr.open('POST', global.ServerUrl + '/v1/room/create', false);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.send(JSON.stringify({}));
-
-      let res = JSON.parse(xhr.responseText);
-
-      if (res.message === "success") {
-        props.setWindowMode('roomCreate');
-        props.setRoomToken(res.token);
+    fetch(global.ServerUrl + '/v1/room/create', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((json) => {
+          if (json.message === "success") {
+            props.setWindowMode('roomCreate');
+            props.setRoomToken(json.token);
+          }
+          else {
+            setError(json.error);
+          }
+        });
       }
       else {
-        setError(res.error);
+        res.json().then((json) => {
+          setError(json.error);
+        });
       }
-    } catch (e) {
-      setError(e);
-    }
+    }).catch((e) => {
+      setError(e.message);
+    });
   }
 
   function ErrorAlert() {

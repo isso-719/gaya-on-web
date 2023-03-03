@@ -136,7 +136,11 @@ export const RoomChat = props => {
             メッセージ
           </Text>
           <Flex mt={2} w={"90%"}>
-            <Input id={"chat-text-message-body"} w={"80%"} placeholder="送りたいメッセージ" />
+            <Input id={"chat-text-message-body"} w={"80%"} placeholder="送りたいメッセージ" onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                textSend()
+              }}
+            } />
             <Button ml={2} w={"20%"} colorScheme="teal" onClick={textSend}>送信</Button>
           </Flex>
           <Text mt={"32px"} fontWeight={"bold"} fontSize={"xl"}>
