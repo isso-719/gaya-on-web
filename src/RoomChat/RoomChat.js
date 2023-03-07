@@ -55,7 +55,7 @@ export const RoomChat = props => {
   }
 
   function emojiSend(emoji) {
-    let body = emoji.native;
+    let body = emoji.unified;
     if (body === '') {
       return;
     }
@@ -146,7 +146,7 @@ export const RoomChat = props => {
           <Text mt={"32px"} fontWeight={"bold"} fontSize={"xl"}>
             リアクション
           </Text>
-          <Picker data={data} onEmojiSelect={emojiSend} theme={chakraColor} />
+          <Picker data={data} onEmojiSelect={emojiSend} theme={chakraColor} skinTonePosition={"none"} />
         </Flex>
       </Flex>
     </Flex>
