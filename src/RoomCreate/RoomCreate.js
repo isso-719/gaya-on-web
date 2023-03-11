@@ -58,6 +58,12 @@ export const RoomCreate = props => {
             {/*<Button mb={1} ml={1} w={"20%"} colorScheme={"teal"} onClick={copyToClipboard(props.roomToken, this)}>コピー</Button>*/}
             <CopyForm text={props.roomToken} />
           </FormControl>
+          <FormControl mt={2}>
+            <FormLabel>招待 URL</FormLabel>
+            {/*<Input w={"78%"} value={props.roomToken} />*/}
+            {/*<Button mb={1} ml={1} w={"20%"} colorScheme={"teal"} onClick={copyToClipboard(props.roomToken, this)}>コピー</Button>*/}
+            <CopyForm text={window.location.protocol + '//' + window.location.host + "/?s=" + global.ServerUrl + "&t=" + props.roomToken} />
+          </FormControl>
         </Box>
         <Button colorScheme='teal' onClick={() => props.setWindowMode('start')}>Back</Button>
       </Box>
