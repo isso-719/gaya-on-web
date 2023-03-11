@@ -20,6 +20,7 @@ function Form(props) {
 Form.propTypes = { children: PropTypes.node };
 export const Start = props => {
   const [error, setError] = React.useState(null);
+
   function joinRoom() {
     global.ServerUrl = document.getElementById('room-join-address-input').value;
     let token = document.getElementById('room-token-input').value;
@@ -105,6 +106,14 @@ export const Start = props => {
   }
 
   let serverUrl = global.ServerUrl;
+  let roomToken;
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('s')) {
+    serverUrl = urlParams.get('s');
+  }
+  if (urlParams.has('t')) {
+    roomToken = urlParams.get('t');
+  }
 
   return (
     <Flex w={"100vw"} minH={"100vh"} alignItems={"center"} justifyContent={"center"} flexDirection={"column"}>
@@ -134,7 +143,8 @@ export const Start = props => {
           <Box textAlign={"center"}>
             <Input id={"room-join-address-input"} display={"block"} mb={1} w={"320px"} maxW={"80vw"} h={"40px"}
                    placeholder="サーバアドレス" defaultValue={serverUrl} />
-            <Input id={"room-token-input"} display={"block"} mb={1} w={"320px"} maxW={"80vw"} h={"40px"} placeholder="ルームトークン" />
+            <Input id={"room-token-input"} display={"block"} mb={1} w={"320px"} maxW={"80vw"} h={"40px"}
+                   placeholder="ルームトークン" defaultValue={roomToken} />
             <Button display={"block"} w={"320px"} maxW={"80vw"} h={"40px"} colorScheme='teal' onClick={() => joinRoom()}>Join</Button>
           </Box>
         </Flex>
